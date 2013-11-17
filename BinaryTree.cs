@@ -10,14 +10,6 @@ namespace Code
 class BinaryTree
 {
 
-    public static void Main(string[] args)
-    {
-        BTreeNode<int> r = new BTreeNode<int>(3);
-        r.AddLeftNode(new BTreeNode<int>(1));
-        r.AddRightNode(new BTreeNode<int>(4));
-        Console.WriteLine(IsBinarySearchTree(r));
-    }
-
     public static bool IsBinarySearchTree(BTreeNode<int> t)
     {
         
@@ -49,11 +41,13 @@ public class BTreeNode<T>
     public BTreeNode<T> Left
     {
         get { return this.left; }
+        set { this.left = value; }
     }
     
     public BTreeNode<T> Right
     {
         get { return this.right; }
+        set { this.right = value; }
     }
 
     public T Value
@@ -94,6 +88,16 @@ public class BTreeNode<T>
         }
         Console.WriteLine("Right node already exists");
         return false;
+    }
+
+    public string PrintInOrder()
+    {
+        
+        StringBuilder sb = new StringBuilder();
+        if(this.left != null) sb.Append(this.Left.PrintInOrder());
+        sb.Append(" "+ this.value+" ");
+        if(this.right != null) sb.Append(this.right.PrintInOrder());
+        return sb.ToString();
     }
 }
 
